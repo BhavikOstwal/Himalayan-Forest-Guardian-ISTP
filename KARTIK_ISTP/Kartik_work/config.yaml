@@ -1,0 +1,63 @@
+# Chainsaw Detection Configuration
+
+# Data paths
+data:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  rfcx_dataset: "data/raw/rfcx"
+  audioset_dataset: "data/raw/audioset"
+  output_dir: "output"
+  
+# Audio preprocessing
+audio:
+  sample_rate: 16000
+  duration: 10  # seconds
+  n_mels: 128
+  hop_length: 512
+  n_fft: 2048
+  
+# Data augmentation
+augmentation:
+  time_stretch_range: [0.8, 1.2]
+  pitch_shift_range: [-2, 2]  # semitones
+  noise_factor: 0.005
+  mixup_alpha: 0.2
+  apply_prob: 0.5
+  
+# Model configuration
+model:
+  name: "MIT/ast-finetuned-audioset-10-10-0.450"
+  num_labels: 2  # binary: chainsaw vs non-chainsaw
+  freeze_feature_extractor: false
+  dropout: 0.1
+  
+# Training parameters
+training:
+  batch_size: 16
+  num_epochs: 40
+  learning_rate: 5e-5
+  warmup_steps: 500
+  weight_decay: 0.01
+  gradient_accumulation_steps: 2
+  early_stopping_patience: 8
+  save_steps: 500
+  eval_steps: 500
+  logging_steps: 100
+  
+# Data split
+split:
+  train: 0.7
+  val: 0.15
+  test: 0.15
+  random_seed: 42
+  
+# Evaluation
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1", "auc"]
+  threshold: 0.5
+  
+# Hardware
+hardware:
+  use_cuda: true
+  num_workers: 4
+  mixed_precision: true  # fp16 training

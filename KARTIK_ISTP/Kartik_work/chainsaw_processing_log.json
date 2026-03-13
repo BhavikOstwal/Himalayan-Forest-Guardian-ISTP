@@ -1,0 +1,18 @@
+{
+  "files_processed": 0,
+  "files_failed": 1000,
+  "before": {
+    "train_chainsaw": 6788,
+    "train_non_chainsaw": 1399,
+    "val_chainsaw": 786,
+    "val_non_chainsaw": 300,
+    "m4a_files": 7201
+  },
+  "after": {
+    "train_chainsaw": 6788,
+    "train_non_chainsaw": 1399,
+    "val_chainsaw": 786,
+    "val_non_chainsaw": 300,
+    "m4a_files": 7201
+  }
+}
